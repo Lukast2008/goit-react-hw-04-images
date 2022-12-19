@@ -11,13 +11,10 @@ export const Modal = ({ largeImage, closeModal }) => {
 
   useEffect(() => {
     window.addEventListener('keydown', closeOnPushEsc);
-  });
 
-  useEffect(() => {
     return () => {
       document.removeEventListener('keydown', closeOnPushEsc);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { src, alt } = largeImage;
@@ -30,6 +27,9 @@ export const Modal = ({ largeImage, closeModal }) => {
 };
 
 Modal.propTypes = {
-  largeImage: PropTypes.shape().isRequired,
+  largeImage: PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+  }).isRequired,
   closeModal: PropTypes.func.isRequired,
 };
