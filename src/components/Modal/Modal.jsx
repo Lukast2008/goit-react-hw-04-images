@@ -14,11 +14,10 @@ export const Modal = ({ largeImage, closeModal }) => {
   });
 
   useEffect(() => {
-    const closeOnPushEsc = () =>
-      document.addEventListener('keydown', closeOnPushEsc);
     return () => {
       document.removeEventListener('keydown', closeOnPushEsc);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { src, alt } = largeImage;

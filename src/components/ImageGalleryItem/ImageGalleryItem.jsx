@@ -17,6 +17,12 @@ export const ImageGalleryItem = ({ gallerylistItem, openModal }) => {
 
 ImageGalleryItem.propTypes = {
   gallerylistItem: PropTypes.arrayOf(
-    PropTypes.shape.isRequired).isRequired,
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      webformatURL: PropTypes.string.isRequired,
+      tags: PropTypes.string.isRequired,
+      largeImageURL: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
   openModal: PropTypes.func.isRequired,
 }.isRequired;

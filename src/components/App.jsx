@@ -15,29 +15,29 @@ export const App = () => {
   const [buttonVisible, setButtonVisible] = useState(false);
 
   useEffect(() => {
-    searchItems &&
-      GetDataArr(searchItems, page)
+    if(!searchItems)return
+    setIsLoading(true);
+      searchItems && GetDataArr(searchItems, page)
         .then(data => {
           setDataArr([...dataArr, ...data]);
           data && setIsLoading(false);
           data.length === 12 ? setButtonVisible(true) : setButtonVisible(false);
         })
         .catch(console.log);
+     
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchItems, page]);
 
-  useEffect(() => {
-    searchItems && setIsLoading(true);
-  }, [searchItems, page]);
-
   const loadMore = () => {
-    setPage(page + 1);
+    setPage((prev) => prev + 1);
+    
   };
 
   const onSubmit = (val) => {
-    val && setDataArr([]);
+    if(!val)return
+    setDataArr([]);
     setPage(1);
-    val && setSearchItems(val);
+    setSearchItems(val);
   };
 
   const openModal = data => {
